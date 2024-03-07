@@ -1,25 +1,18 @@
 import React from "react";
 import { textToId } from "../help";
-const RadioInput = ({ inputLabel }) => {
-  let name = textToId(inputLabel);
+const RadioInput = ({ inputLabel, options }) => {
   return (
     <div className="form-input">
       <label>{inputLabel}</label>
       <div>
-        <div>
-          <input id="checkbox" type="radio" />
-          <span className="input-name">{name}</span>
-        </div>
-
-        <div>
-          <input id="checkbox" type="radio" />
-          <span className="input-name">{name}</span>
-        </div>
-
-        <div>
-          <input id="checkbox" type="radio" />
-          <span className="input-name">{name}</span>
-        </div>
+        {options.map((option) => {
+          return (
+            <div key={option}>
+              <input className="checkbox" type="radio" />
+              <span className="input-name">{option}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

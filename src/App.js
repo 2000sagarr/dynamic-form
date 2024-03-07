@@ -1,11 +1,10 @@
 import "./App.css";
 import DynamicForm from "./components/DynamicForm";
-
+import Form1 from "./forms/Form1.json";
 function App() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Dynamic Form</h1>
-      <DynamicForm />
+      <DynamicForm formData={Form1} />
     </div>
   );
 }

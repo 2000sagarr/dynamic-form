@@ -1,13 +1,24 @@
 import React from "react";
-import CheckBox from "./CheckBox";
-const CheckBoxInput = ({ inputLabel }) => {
+
+const CheckBoxInput = ({ inputLabel, options }) => {
   return (
     <div className="form-input">
       <label>{inputLabel}</label>
+
       <div>
-        <CheckBox name={"Faizpur"} />
-        <CheckBox name={"Pune"} />
-        <CheckBox name={"Mumbai"} />
+        {options.map((option) => {
+          return (
+            <div  key={option}>
+              <input
+                className="checkbox"
+                type="checkbox"
+                // checked={isChecked}
+                // onChange={handleCheckboxChange}
+              />
+              <span className="input-name">{option}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

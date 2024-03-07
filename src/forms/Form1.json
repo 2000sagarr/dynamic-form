@@ -1,0 +1,62 @@
+{
+  "title": "Dynamic Form Example",
+  "fileName": "form1",
+  "fields": [
+    {
+      "name": "name",
+      "label": "Name",
+      "type": "text",
+      "placeholder": "Enter your name",
+      "required": true,
+      "validation": {
+        "minLength": 50,
+        "maxLength": 5
+      }
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "type": "text",
+      "format": "email",
+      "placeholder": "Enter your email",
+      "required": true
+    },
+    {
+      "name": "age",
+      "label": "Age",
+      "type": "text",
+      "format": "number",
+      "placeholder": "Enter your age",
+      "validation": {
+        "message": "Age must be between 18 and 100.",
+        "min": 18,
+        "max": 100
+      }
+    },
+    {
+      "name": "gender",
+      "label": "Gender",
+      "type": "radio",
+      "options": ["Male", "Female", "Other"]
+    },
+    {
+      "name": "language",
+      "label": "Language",
+      "type": "checkbox",
+      "options": ["Hindi", "English", "Marathi", "Gujarathi", "Other"]
+    },
+    {
+      "name": "education",
+      "label": "Education",
+      "type": "dropdown",
+      "options": ["B.E.", "M.E.", "M. Tech"]
+    },
+    {
+      "name": "message",
+      "label": "Message",
+      "type": "textarea",
+      "placeholder": "Enter your message"
+    }
+  ],
+  "submitButtoName": "Submit Form"
+}
