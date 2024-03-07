@@ -17,62 +17,82 @@ const initializeFormInput = (form) => {
       index: index,
     };
   });
-  console.log(FormInput);
   return FormInput;
 };
 
 const DynamicForm = ({ formData }) => {
   const [formInput, setFormInput] = useState(() => {
-    initializeFormInput(formData);
+    return initializeFormInput(formData);
   });
   useEffect(() => {
-    // console.log(formData);
-  }, []);
+    console.log(formInput);
+  }, [formInput]);
+
+  const onAnswerQuestion = (name, ans) => {
+    setFormInput((prevDataArray) => {
+      const newDataArray = [...formInput];
+      const index = newDataArray.findIndex((item) => item.name === name);
+      if (index !== -1) {
+        newDataArray[index].ans = ans;
+        return newDataArray;
+      }
+      return prevDataArray;
+    });
+  };
 
   const renderFormFields = () => {
-    return formData.fields.map((inputItem) => {
+    return formData.fields.map((inputItem, index) => {
       console.log(inputItem);
       if (inputItem.type === "text") {
         console.log(inputItem.format);
-
         return (
           <TextInput
+            name={inputItem.name}
             key={inputItem.name}
             inputLabel={inputItem.label}
             placeholder={inputItem.placeholder}
             format={inputItem.format ? inputItem.format : "text"}
+            onAnswerQuestion={onAnswerQuestion}
           />
         );
       } else if (inputItem.type === "textarea") {
         return (
           <TextAreaInput
+            name={inputItem.name}
             key={inputItem.name}
             inputLabel={inputItem.label}
             placeholder={inputItem.placeholder}
+            onAnswerQuestion={onAnswerQuestion}
           />
         );
       } else if (inputItem.type === "radio") {
         return (
           <RadioInput
+            name={inputItem.name}
             key={inputItem.name}
             inputLabel={inputItem.label}
             options={inputItem.options}
+            onAnswerQuestion={onAnswerQuestion}
           />
         );
       } else if (inputItem.type === "checkbox") {
         return (
           <CheckBoxInput
+            name={inputItem.name}
             key={inputItem.name}
             inputLabel={inputItem.label}
             options={inputItem.options}
+            onAnswerQuestion={onAnswerQuestion}
           />
         );
       } else if (inputItem.type === "dropdown") {
         return (
           <DropDownInput
+            name={inputItem.name}
             key={inputItem.name}
             inputLabel={inputItem.label}
             options={inputItem.options}
+            onAnswerQuestion={onAnswerQuestion}
           />
         );
       }

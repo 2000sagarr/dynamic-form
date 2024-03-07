@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-const DropDownInput = ({ inputLabel, options }) => {
+const DropDownInput = ({ name, inputLabel, options, onAnswerQuestion }) => {
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const onOptionChangeHandler = (event) => {
+    setSelectedOption(event.target.value);
+    onAnswerQuestion(name, event.target.value);
+  };
   return (
     <div className="form-input">
       <label>{inputLabel}</label>
-      {/* <input name="firstName" placeholder={placeholder ? placeholder : ""} /> */}
-      <select name="cars" id="cars">
+      <select value={selectedOption} onChange={onOptionChangeHandler}>
+        <option value="" disabled hidden>
+          Select option...
+        </option>
         {options.map((option) => {
-          return <option key={option} value={option}>{option}</option>;
+          return (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          );
         })}
       </select>
     </div>

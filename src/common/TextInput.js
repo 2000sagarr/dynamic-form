@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-const TextInput = ({ inputLabel, placeholder, format }) => {
+const TextInput = ({
+  name,
+  inputLabel,
+  placeholder,
+  format,
+  onAnswerQuestion,
+}) => {
+  const [inputData, setInputData] = useState("");
+
+  const onBlurHanlder = () => {
+    onAnswerQuestion(name, inputData);
+  };
+
   return (
     <div className="form-input">
       <label>{inputLabel}</label>
@@ -8,6 +20,11 @@ const TextInput = ({ inputLabel, placeholder, format }) => {
         name="firstName"
         placeholder={placeholder ? placeholder : ""}
         type={format}
+        value={inputData}
+        onChange={(e) => {
+          setInputData(e.target.value);
+        }}
+        onBlur={onBlurHanlder}
       />
     </div>
   );
