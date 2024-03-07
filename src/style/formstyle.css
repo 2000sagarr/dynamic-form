@@ -1,0 +1,51 @@
+/* #59D5E0
+#F5DD61
+#FAA300
+#F4538A */
+
+.form-container {
+  width: 40%;
+  margin: 2vh auto;
+  border: 2px solid #0075ff;
+  border-radius: 15px;
+  padding: 1vh;
+}
+
+label {
+  color: black;
+  font-size: medium;
+  margin-bottom: 1vh;
+  width: 30%;
+}
+
+input,
+select,
+textarea {
+  border-width: 1.5px;
+  border-radius: 5px;
+  border-color: #989898;
+  font-size: medium;
+  color: black;
+  outline-color: #0075ff;
+  padding: 5px 10px;
+  width: 70%;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: row;
+  margin: 2vh;
+}
+
+#checkbox {
+  width: 2vh;
+  height: 2vh;
+  background-color: red;
+  display: inline;
+}
+
+.input-name {
+  color: black;
+  font-size: medium;
+  margin: 1vh 2vh;
+}
