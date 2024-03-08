@@ -9,8 +9,8 @@
       "placeholder": "Enter your name",
       "required": true,
       "validation": {
-        "minLength": 50,
-        "maxLength": 5
+        "minLength": 5,
+        "maxLength": 10
       }
     },
     {
@@ -28,7 +28,6 @@
       "format": "number",
       "placeholder": "Enter your age",
       "validation": {
-        "message": "Age must be between 18 and 100.",
         "min": 18,
         "max": 100
       }

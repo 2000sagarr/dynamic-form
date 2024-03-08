@@ -7,7 +7,7 @@
   width: 40%;
   margin: 2vh auto;
   border: 2px solid rgb(41, 187, 187);
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 1vh;
 }
 
@@ -63,4 +63,9 @@ textarea {
 .error {
   color: red;
   margin-left: 1vh;
+}
+
+hr {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }

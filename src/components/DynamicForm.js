@@ -19,7 +19,7 @@ const initializeFormInput = (form) => {
   return FormInput;
 };
 
-const DynamicForm = ({ formData }) => {
+const DynamicForm = ({ formData, setFormJSON }) => {
   const [formInput, setFormInput] = useState(() => {
     return initializeFormInput(formData);
   });
@@ -42,6 +42,32 @@ const DynamicForm = ({ formData }) => {
     });
   };
 
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    setSubmitClicked(true);
+    let isFormComplete = true;
+    formInput.forEach((input, index) => {
+      if (
+        formData["fields"][index]["required"] &&
+        (input["ans"] === null || input["ans"] === "")
+      ) {
+        isFormComplete = false;
+      }
+    });
+
+    if (isFormComplete) {
+      alert("Completed");
+      console.log(formInput);
+      let JSON = {};
+      for (let input of formInput) {
+        JSON[input["name"]] = input["ans"];
+      }
+      setFormJSON(JSON);
+    } else {
+      alert("Please complete form!");
+    }
+  };
+
   const renderFormFields = () => {
     return formData.fields.map((inputItem, index) => {
       // text input
@@ -54,7 +80,7 @@ const DynamicForm = ({ formData }) => {
               placeholder={inputItem.placeholder}
               format={inputItem.format ? inputItem.format : "text"}
               onAnswerQuestion={onAnswerQuestion}
-              required={inputItem.required ? inputItem.required : false}
+              validation={inputItem.validation}
             />
 
             {/* is required error */}
@@ -77,7 +103,6 @@ const DynamicForm = ({ formData }) => {
               inputLabel={inputItem.label}
               placeholder={inputItem.placeholder}
               onAnswerQuestion={onAnswerQuestion}
-              required={inputItem.required ? inputItem.required : false}
             />
             {/* is required error */}
             {submitClicked &&
@@ -99,7 +124,6 @@ const DynamicForm = ({ formData }) => {
               inputLabel={inputItem.label}
               options={inputItem.options}
               onAnswerQuestion={onAnswerQuestion}
-              required={inputItem.required ? inputItem.required : false}
             />
             {/* is required error */}
             {submitClicked &&
@@ -121,7 +145,6 @@ const DynamicForm = ({ formData }) => {
               inputLabel={inputItem.label}
               options={inputItem.options}
               onAnswerQuestion={onAnswerQuestion}
-              required={inputItem.required ? inputItem.required : false}
             />
             {/* is required error */}
             {submitClicked &&
@@ -142,7 +165,6 @@ const DynamicForm = ({ formData }) => {
               inputLabel={inputItem.label}
               options={inputItem.options}
               onAnswerQuestion={onAnswerQuestion}
-              required={inputItem.required ? inputItem.required : false}
             />
             {/* is required error */}
             {submitClicked &&
@@ -160,28 +182,9 @@ const DynamicForm = ({ formData }) => {
   return (
     <div className="form-container">
       <h1>{formData.title ? formData.title : "Form"}</h1>
+      <hr />
       {renderFormFields()}
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          setSubmitClicked(true);
-          let isFormComplete = true;
-          formInput.forEach((input, index) => {
-            if (
-              formData["fields"][index]["required"] &&
-              (input["ans"] === null || input["ans"] === "")
-            ) {
-              isFormComplete = false;
-            }
-          });
-
-          if (isFormComplete) {
-            alert("Completed");
-          } else {
-            alert("Please complete form!");
-          }
-        }}
-      >
+      <form onSubmit={onSubmitForm}>
         <button className="btn" type="submit">
           {formData.submitButtoName ? formData.submitButtoName : "Submit"}
         </button>

@@ -1,7 +1,5 @@
-export const textToId = (text) => {
-  return text
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
+export const validateEmail = (email) => {
+  console.log("email" + email);
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
 };
