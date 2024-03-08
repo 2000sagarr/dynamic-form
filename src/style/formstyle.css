@@ -59,3 +59,8 @@ textarea {
   font-size: medium;
   border-radius: 10px;
 }
+
+.error {
+  color: red;
+  margin-left: 1vh;
+}

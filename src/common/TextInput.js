@@ -6,6 +6,8 @@ const TextInput = ({
   placeholder,
   format,
   onAnswerQuestion,
+
+
 }) => {
   const [inputData, setInputData] = useState("");
 

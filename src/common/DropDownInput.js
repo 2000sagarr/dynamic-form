@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const DropDownInput = ({ name, inputLabel, options, onAnswerQuestion }) => {
   const [selectedOption, setSelectedOption] = useState("");
-
   const onOptionChangeHandler = (event) => {
     setSelectedOption(event.target.value);
     onAnswerQuestion(name, event.target.value);

@@ -9,7 +9,6 @@ import RadioInput from "../common/RadioInput";
 import TextAreaInput from "../common/TextAreaInput";
 
 const initializeFormInput = (form) => {
-  console.log(form.fields);
   const FormInput = form.fields.map((item, index) => {
     return {
       name: item["name"],
@@ -24,8 +23,11 @@ const DynamicForm = ({ formData }) => {
   const [formInput, setFormInput] = useState(() => {
     return initializeFormInput(formData);
   });
+
+  const [submitClicked, setSubmitClicked] = useState(false);
+
   useEffect(() => {
-    console.log(formInput);
+    // console.log(formInput);
   }, [formInput]);
 
   const onAnswerQuestion = (name, ans) => {
@@ -42,58 +44,114 @@ const DynamicForm = ({ formData }) => {
 
   const renderFormFields = () => {
     return formData.fields.map((inputItem, index) => {
-      console.log(inputItem);
+      // text input
       if (inputItem.type === "text") {
-        console.log(inputItem.format);
         return (
-          <TextInput
-            name={inputItem.name}
-            key={inputItem.name}
-            inputLabel={inputItem.label}
-            placeholder={inputItem.placeholder}
-            format={inputItem.format ? inputItem.format : "text"}
-            onAnswerQuestion={onAnswerQuestion}
-          />
+          <div key={inputItem.name}>
+            <TextInput
+              name={inputItem.name}
+              inputLabel={inputItem.label}
+              placeholder={inputItem.placeholder}
+              format={inputItem.format ? inputItem.format : "text"}
+              onAnswerQuestion={onAnswerQuestion}
+              required={inputItem.required ? inputItem.required : false}
+            />
+
+            {/* is required error */}
+            {submitClicked &&
+              formData["fields"][index]["required"] &&
+              (formInput[index].ans === null ||
+                formInput[index].ans.trim() === "") && (
+                <p className="error">Field is required.</p>
+              )}
+          </div>
         );
-      } else if (inputItem.type === "textarea") {
+      }
+
+      // textarea
+      else if (inputItem.type === "textarea") {
         return (
-          <TextAreaInput
-            name={inputItem.name}
-            key={inputItem.name}
-            inputLabel={inputItem.label}
-            placeholder={inputItem.placeholder}
-            onAnswerQuestion={onAnswerQuestion}
-          />
+          <div key={inputItem.name}>
+            <TextAreaInput
+              name={inputItem.name}
+              inputLabel={inputItem.label}
+              placeholder={inputItem.placeholder}
+              onAnswerQuestion={onAnswerQuestion}
+              required={inputItem.required ? inputItem.required : false}
+            />
+            {/* is required error */}
+            {submitClicked &&
+              formData["fields"][index]["required"] &&
+              (formInput[index].ans === null ||
+                formInput[index].ans.trim() === "") && (
+                <p className="error">Field is required.</p>
+              )}
+          </div>
         );
-      } else if (inputItem.type === "radio") {
+      }
+
+      // radio
+      else if (inputItem.type === "radio") {
         return (
-          <RadioInput
-            name={inputItem.name}
-            key={inputItem.name}
-            inputLabel={inputItem.label}
-            options={inputItem.options}
-            onAnswerQuestion={onAnswerQuestion}
-          />
+          <div key={inputItem.name}>
+            <RadioInput
+              name={inputItem.name}
+              inputLabel={inputItem.label}
+              options={inputItem.options}
+              onAnswerQuestion={onAnswerQuestion}
+              required={inputItem.required ? inputItem.required : false}
+            />
+            {/* is required error */}
+            {submitClicked &&
+              formData["fields"][index]["required"] &&
+              (formInput[index].ans === null ||
+                formInput[index].ans === "") && (
+                <p className="error">Field is required.</p>
+              )}
+          </div>
         );
-      } else if (inputItem.type === "checkbox") {
+      }
+
+      // checkbox
+      else if (inputItem.type === "checkbox") {
         return (
-          <CheckBoxInput
-            name={inputItem.name}
-            key={inputItem.name}
-            inputLabel={inputItem.label}
-            options={inputItem.options}
-            onAnswerQuestion={onAnswerQuestion}
-          />
+          <div key={inputItem.name}>
+            <CheckBoxInput
+              name={inputItem.name}
+              inputLabel={inputItem.label}
+              options={inputItem.options}
+              onAnswerQuestion={onAnswerQuestion}
+              required={inputItem.required ? inputItem.required : false}
+            />
+            {/* is required error */}
+            {submitClicked &&
+              formData["fields"][index]["required"] &&
+              (formInput[index].ans === null || formInput[index].ans == {}) && (
+                <p className="error">Field is required.</p>
+              )}
+          </div>
         );
-      } else if (inputItem.type === "dropdown") {
+      }
+
+      // dropdown
+      else if (inputItem.type === "dropdown") {
         return (
-          <DropDownInput
-            name={inputItem.name}
-            key={inputItem.name}
-            inputLabel={inputItem.label}
-            options={inputItem.options}
-            onAnswerQuestion={onAnswerQuestion}
-          />
+          <div key={inputItem.name}>
+            <DropDownInput
+              name={inputItem.name}
+              inputLabel={inputItem.label}
+              options={inputItem.options}
+              onAnswerQuestion={onAnswerQuestion}
+              required={inputItem.required ? inputItem.required : false}
+            />
+            {/* is required error */}
+            {submitClicked &&
+              formData["fields"][index]["required"] &&
+              (formInput[index].ans === null ||
+                formInput[index].ans.trim() === "") && (
+                <p className="error">Field is required.</p>
+              )}
+          </div>
         );
       }
     });
@@ -103,7 +161,27 @@ const DynamicForm = ({ formData }) => {
     <div className="form-container">
       <h1>{formData.title ? formData.title : "Form"}</h1>
       {renderFormFields()}
-      <form>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          setSubmitClicked(true);
+          let isFormComplete = true;
+          formInput.forEach((input, index) => {
+            if (
+              formData["fields"][index]["required"] &&
+              (input["ans"] === null || input["ans"] === "")
+            ) {
+              isFormComplete = false;
+            }
+          });
+
+          if (isFormComplete) {
+            alert("Completed");
+          } else {
+            alert("Please complete form!");
+          }
+        }}
+      >
         <button className="btn" type="submit">
           {formData.submitButtoName ? formData.submitButtoName : "Submit"}
         </button>

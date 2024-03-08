@@ -37,12 +37,16 @@
       "name": "gender",
       "label": "Gender",
       "type": "radio",
+      "required": true,
+
       "options": ["Male", "Female", "Other"]
     },
     {
       "name": "language",
       "label": "Language",
       "type": "checkbox",
+      "required": true,
+
       "options": ["Hindi", "English", "Marathi", "Gujarathi", "Other"]
     },
     {
@@ -55,6 +59,8 @@
       "name": "message",
       "label": "Message",
       "type": "textarea",
+      "required": true,
+
       "placeholder": "Enter your message"
     }
   ],
