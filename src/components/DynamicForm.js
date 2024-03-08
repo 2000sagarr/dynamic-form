@@ -7,6 +7,7 @@ import DropDownInput from "../common/DropDownInput";
 import CheckBoxInput from "../common/CheckBoxInput";
 import RadioInput from "../common/RadioInput";
 import TextAreaInput from "../common/TextAreaInput";
+import ImageInput from "../common/ImageInput";
 
 const initializeFormInput = (form) => {
   const FormInput = form.fields.map((item, index) => {
@@ -114,7 +115,26 @@ const DynamicForm = ({ formData, setFormJSON }) => {
           </div>
         );
       }
-
+      // textarea
+      else if (inputItem.type === "image") {
+        return (
+          <div key={inputItem.name}>
+            <ImageInput
+              name={inputItem.name}
+              inputLabel={inputItem.label}
+              placeholder={inputItem.placeholder}
+              onAnswerQuestion={onAnswerQuestion}
+              validation={inputItem.validation}
+            />
+            {/* is required error */}
+            {submitClicked &&
+              formData["fields"][index]["required"] &&
+              formInput[index].ans === null && (
+                <p className="error">Field is required.</p>
+              )}
+          </div>
+        );
+      }
       // radio
       else if (inputItem.type === "radio") {
         return (
@@ -181,10 +201,11 @@ const DynamicForm = ({ formData, setFormJSON }) => {
 
   return (
     <div className="form-container">
-      <h1>{formData.title ? formData.title : "Form"}</h1>
-      <hr />
-      {renderFormFields()}
       <form onSubmit={onSubmitForm}>
+        <h1>{formData.title ? formData.title : "Form"}</h1>
+        <hr />
+        {renderFormFields()}
+        <hr />
         <button className="btn" type="submit">
           {formData.submitButtoName ? formData.submitButtoName : "Submit"}
         </button>

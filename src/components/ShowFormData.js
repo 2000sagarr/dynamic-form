@@ -7,9 +7,18 @@ const ShowFormData = ({ data }) => {
         <tr key={key}>
           <td style={tableCell}>{key}</td>
           <td style={tableCell}>
-            {typeof data[key] === "string"
-              ? data[key]
-              : JSON.stringify(data[key])}
+            {typeof data[key] === "string" ? (
+              data[key]
+            ) : data[key] instanceof File ? (
+              <img
+                width={150}
+                height={120}
+                src={URL.createObjectURL(data[key])}
+                alt="Selected"
+              />
+            ) : (
+              JSON.stringify(data[key])
+            )}
           </td>
         </tr>
       );

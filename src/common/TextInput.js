@@ -53,7 +53,6 @@ const TextInput = ({
       <div className="form-input">
         <label>{inputLabel}</label>
         <input
-          name="firstName"
           placeholder={placeholder ? placeholder : ""}
           type={format}
           value={inputData}

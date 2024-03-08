@@ -5,6 +5,7 @@ import Form1 from "./forms/Form1.json";
 import ShowFormData from "./components/ShowFormData";
 function App() {
   const [formJSON, setFormJSON] = useState(null);
+  console.log(formJSON);
   return (
     <div>
       <DynamicForm formData={Form1} setFormJSON={setFormJSON} />
