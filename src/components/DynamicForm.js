@@ -28,7 +28,7 @@ const DynamicForm = ({ formData, setFormJSON }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
 
   useEffect(() => {
-    // console.log(formInput);
+    // //console.log(formInput);
   }, [formInput]);
 
   const onAnswerQuestion = (name, ans) => {
@@ -58,7 +58,7 @@ const DynamicForm = ({ formData, setFormJSON }) => {
 
     if (isFormComplete) {
       alert("Completed");
-      console.log(formInput);
+      //console.log(formInput);
       let JSON = {};
       for (let input of formInput) {
         JSON[input["name"]] = input["ans"];

@@ -1,6 +1,7 @@
 import React from "react";
 
 const ShowFormData = ({ data }) => {
+  console.log(data);
   const show = () => {
     return Object.keys(data).map((key) => {
       return (

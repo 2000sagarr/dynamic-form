@@ -12,7 +12,7 @@ const TextInput = ({
   const [inputData, setInputData] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("false");
-  console.log(format);
+  //console.log(format);
   const onBlurHanlder = () => {
     onAnswerQuestion(name, inputData);
   };

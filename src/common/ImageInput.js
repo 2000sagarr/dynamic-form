@@ -14,18 +14,18 @@ const ImageInput = ({
 
   const onImageChangeHandker = (event) => {
     const file = event.target.files[0];
-    console.log(file);
+    //console.log(file);
     if (file) {
       if (file.type.startsWith("image/")) {
         if (file.size >= validation.size * 1000) {
-          console.log("not corrrec" + file.size + ">>>>>" + validation.size);
+          //console.log("not corrrec" + file.size + ">>>>>" + validation.size);
 
           setError(true);
           setErrorMessage(
             "Image size should be less than " + validation.size + "KB"
           );
         } else {
-          console.log("Coorect");
+          //console.log("Coorect");
           setSelectedImage(file);
           setError(false);
           setErrorMessage("");

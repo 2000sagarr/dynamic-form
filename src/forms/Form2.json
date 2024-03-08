@@ -1,0 +1,79 @@
+{
+  "title": "Register",
+  "fileName": "form1",
+  "fields": [
+    {
+      "name": "firstname",
+      "label": "First Name",
+      "type": "text",
+      "placeholder": "Enter your first name",
+      "required": true,
+      "validation": {
+        "minLength": 5,
+        "maxLength": 20
+      }
+    },
+
+    {
+      "name": "lastname",
+      "label": "Last Name",
+      "type": "text",
+      "placeholder": "Enter your last name",
+      "required": true,
+      "validation": {
+        "minLength": 5,
+        "maxLength": 20
+      }
+    },
+
+    {
+      "name": "email",
+      "label": "Email",
+      "type": "text",
+      "format": "email",
+      "placeholder": "Enter your email",
+      "required": true
+    },
+    {
+      "name": "password",
+      "label": "Password",
+      "type": "text",
+      "format": "password",
+      "placeholder": "Enter your password",
+      "required": true,
+      "validation": {
+        "minLength": 5
+      }
+    },
+    {
+      "name": "address",
+      "label": "Address",
+      "type": "textarea",
+      "required": true,
+      "placeholder": "Enter your address"
+    },
+    {
+      "name": "city",
+      "label": "City",
+      "type": "dropdown",
+      "options": ["Pune", "Mumbai", "Jalgaon", "Oother"]
+    },
+    {
+      "name": "gender",
+      "label": "Gender",
+      "type": "radio",
+      "required": true,
+      "options": ["Male", "Female", "Other"]
+    },
+    {
+      "name": "image",
+      "label": "Profile Image",
+      "type": "image",
+      "placeholder": "Please select image",
+      "validation": {
+        "size": 1024
+      }
+    }
+  ],
+  "submitButtoName": "Register"
+}

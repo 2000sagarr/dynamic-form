@@ -69,3 +69,20 @@ hr {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
+
+.btn-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn-show button {
+  padding: 1vh 2vh;
+  margin: 1vh 0;
+  background-color: rgb(41, 187, 187);
+  color: white;
+  font-weight: 500;
+  font-size: medium;
+  border-radius: 10px;
+  margin: 2vh 1vh;
+}
